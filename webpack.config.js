@@ -3,6 +3,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const autoprefixer = require("autoprefixer");
 
+//https://webpack.js.org/plugins/html-webpack-plugin/
 const htmlPlugin = new HtmlWebPackPlugin({
   template: "public/index.html",
   // favicon: "public/favicon.ico",
@@ -21,6 +22,7 @@ const htmlPlugin = new HtmlWebPackPlugin({
   }
 });
 
+//replacement for ExtractTextWebpackPlugin
 const extractPlugin = new MiniCssExtractPlugin({
   filename: "[name].css",
   chunkFilename: "[id].css"
@@ -42,9 +44,7 @@ module.exports = (env, argv) => {
         {
           test: /\.(js|jsx)$/,
           exclude: /node_modules/,
-          use: {
-            loader: "babel-loader"
-          }
+          use: ["babel-loader", "eslint-loader"] //order matters
         },
         {
           test: /\.(css|scss)$/,
@@ -56,7 +56,7 @@ module.exports = (env, argv) => {
                 modules: true, //set to false if you don't want to use css modules
                 camelCase: true,
                 sourceMap: true,
-                minimize: true, //in production only?
+                minimize: true, //skip in development?
                 localIdentName: "[name]_[local]_[hash:base64:5]"
                 // importLoaders: 2
               }
@@ -86,7 +86,7 @@ module.exports = (env, argv) => {
     devServer: {
       compress: true,
       overlay: true,
-      historyApiFallback: true,
+      historyApiFallback: true, //redirect 404 to index.html
       stats: "minimal"
     },
     stats: { children: false, modules: false },
