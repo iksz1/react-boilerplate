@@ -1,0 +1,15 @@
+$bg: rgba(70, 186, 230, 0.25);
+$text: rgba(26, 93, 152, 0.67);
+
+.container {
+  background: $bg;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  min-height: 100vh;
+  & h1 {
+    color: $text;
+  }
+}
