@@ -6,7 +6,6 @@ Starter kit for those, who want to learn more about Webpack and Babel.
 
 * Webpack 4
 * Babel 7
-* Polyfills: Promise, Fetch, Object.assign
 * Eslint
 * Jest
 * Sass support
@@ -30,5 +29,7 @@ To remove git repository, run `rm -rf .git` (on Windows `rm -r -force .git`).
 * `npm start` - starts development server
 * `npm run build` - creates production ready bundle
 * `npm test` - runs Jest
+
+To target specific platform, change settings in `.babelrc`. If polyfills are needed, you can import them in `config/polyfills.js`
 
 [CSS Modules](https://github.com/css-modules/css-modules) are enabled by default. To disable, open `webpack.config.js` and search for `css-loader`. Few lines lower you will see `modules` option.

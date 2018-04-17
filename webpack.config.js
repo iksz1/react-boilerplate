@@ -44,7 +44,7 @@ module.exports = (env, argv) => {
         {
           test: /\.(js|jsx)$/,
           exclude: /node_modules/,
-          use: ["babel-loader", "eslint-loader"] //order matters
+          use: ["babel-loader", "eslint-loader?emitWarning"] //order matters
         },
         {
           test: /\.(css|scss)$/,
@@ -67,7 +67,7 @@ module.exports = (env, argv) => {
                 ident: "postcss",
                 plugins: [
                   autoprefixer({
-                    browsers: [">1%", "last 4 versions", "Firefox ESR", "not ie < 11"]
+                    browsers: [">1%", "last 4 versions", "Firefox ESR", "ie 11"]
                   })
                 ]
               }
@@ -89,7 +89,8 @@ module.exports = (env, argv) => {
       historyApiFallback: true, //redirect 404 to index.html
       stats: "minimal"
     },
-    stats: { children: false, modules: false },
+    stats: { children: false, modules: false, moduleTrace: false },
+    performance: { hints: false },
     plugins: [htmlPlugin, extractPlugin]
   };
 };
