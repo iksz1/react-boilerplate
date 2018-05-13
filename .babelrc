@@ -1,7 +1,7 @@
 {
   "presets": [
     ["@babel/env", { "targets": { "chrome": 48 }, "useBuiltIns": "usage", "modules": false }],
-    "@babel/stage-2",
+    ["@babel/stage-2", { "decoratorsLegacy": true }],
     "@babel/react"
   ],
   "plugins": [
