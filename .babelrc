@@ -14,5 +14,10 @@
         "moduleName": "@babel/runtime"
       }
     ]
-  ]
+  ],
+  "env": {
+    "test": {
+      "presets": ["@babel/env"]
+    }
+  }
 }

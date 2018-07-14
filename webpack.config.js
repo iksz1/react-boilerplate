@@ -24,18 +24,19 @@ const htmlPlugin = new HtmlWebPackPlugin({
 
 //replacement for ExtractTextWebpackPlugin
 const extractPlugin = new MiniCssExtractPlugin({
-  filename: "[name].css",
+  filename: "[name].[hash:8].css",
   chunkFilename: "[id].css"
 });
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === "production";
+  const plugins = [htmlPlugin, extractPlugin];
 
   return {
     entry: ["./config/polyfills.js", "./src/index.js"],
     output: {
-      path: path.resolve(__dirname, "dist"),
-      filename: "bundle.js",
+      path: path.resolve(__dirname, "build"),
+      filename: "[name].[hash:8].js",
       publicPath: "/"
     },
     devtool: isProduction ? false : "eval-source-map",
@@ -44,7 +45,7 @@ module.exports = (env, argv) => {
         {
           test: /\.(js|jsx)$/,
           exclude: /node_modules/,
-          use: ["babel-loader", "eslint-loader?emitWarning"] //order matters
+          use: ["babel-loader?cacheDirectory", "eslint-loader?emitWarning"] //order matters
         },
         {
           test: /\.(css|scss)$/,
@@ -56,7 +57,7 @@ module.exports = (env, argv) => {
                 modules: true, //set to false if you don't want to use css modules
                 camelCase: true,
                 sourceMap: true,
-                minimize: true, //skip in development?
+                minimize: isProduction ? true : false,
                 localIdentName: "[name]_[local]_[hash:base64:5]"
                 // importLoaders: 2
               }
@@ -84,6 +85,8 @@ module.exports = (env, argv) => {
       ]
     },
     devServer: {
+      // host: "0.0.0.0", //makes server accessible over local network
+      port: 3000,
       compress: true,
       overlay: true,
       historyApiFallback: true, //redirect 404 to index.html
@@ -91,6 +94,6 @@ module.exports = (env, argv) => {
     },
     stats: { children: false, modules: false, moduleTrace: false },
     performance: { hints: false },
-    plugins: [htmlPlugin, extractPlugin]
+    plugins
   };
 };
