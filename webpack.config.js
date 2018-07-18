@@ -2,6 +2,7 @@ const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const autoprefixer = require("autoprefixer");
+const cssnano = require("cssnano");
 
 //https://webpack.js.org/plugins/html-webpack-plugin/
 const htmlPlugin = new HtmlWebPackPlugin({
@@ -57,21 +58,13 @@ module.exports = (env, argv) => {
                 modules: true, //set to false if you don't want to use css modules
                 camelCase: true,
                 sourceMap: true,
-                minimize: isProduction ? true : false,
                 localIdentName: "[name]_[local]_[hash:base64:5]"
                 // importLoaders: 2
               }
             },
             {
               loader: "postcss-loader",
-              options: {
-                ident: "postcss",
-                plugins: [
-                  autoprefixer({
-                    browsers: [">1%", "last 4 versions", "Firefox ESR", "ie 11"]
-                  })
-                ]
-              }
+              options: { ident: "postcss", plugins: [autoprefixer(), cssnano()] }
             },
             //this can be removed if you don't use sass
             "sass-loader"
