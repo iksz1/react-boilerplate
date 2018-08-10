@@ -1,6 +1,6 @@
 {
   "presets": [
-    ["@babel/env", { "targets": { "chrome": 48 }, "useBuiltIns": "usage", "modules": false }],
+    ["@babel/env", { "targets": { "chrome": 52 }, "useBuiltIns": "usage", "modules": false }],
     "@babel/react"
   ],
   "plugins": [
@@ -9,9 +9,7 @@
       "@babel/plugin-transform-runtime",
       {
         "helpers": false,
-        "polyfill": false,
-        "regenerator": true,
-        "moduleName": "@babel/runtime"
+        "regenerator": true
       }
     ]
   ],

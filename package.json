@@ -13,11 +13,11 @@
     }
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0-beta.55",
-    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.55",
-    "@babel/plugin-transform-runtime": "^7.0.0-beta.55",
-    "@babel/preset-env": "^7.0.0-beta.55",
-    "@babel/preset-react": "^7.0.0-beta.55",
+    "@babel/core": "^7.0.0-rc.1",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-rc.1",
+    "@babel/plugin-transform-runtime": "^7.0.0-rc.1",
+    "@babel/preset-env": "^7.0.0-rc.1",
+    "@babel/preset-react": "^7.0.0-rc.1",
     "autoprefixer": "^8.6.5",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^8.2.3",
@@ -36,7 +36,7 @@
     "mini-css-extract-plugin": "^0.4.1",
     "node-sass": "^4.9.2",
     "postcss-loader": "^2.1.6",
-    "react-test-renderer": "^16.4.1",
+    "react-test-renderer": "^16.4.2",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
     "url-loader": "^1.0.1",
@@ -45,9 +45,9 @@
     "webpack-dev-server": "^3.1.5"
   },
   "dependencies": {
-    "@babel/runtime": "^7.0.0-beta.55",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
+    "@babel/runtime": "^7.0.0-rc.1",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
     "whatwg-fetch": "^2.0.4"
   }
 }
