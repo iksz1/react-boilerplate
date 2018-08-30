@@ -1,6 +1,6 @@
 {
   "presets": [
-    ["@babel/env", { "targets": { "chrome": 52 }, "useBuiltIns": "usage", "modules": false }],
+    ["@babel/env", { "targets": { "chrome": 55 }, "useBuiltIns": "usage", "modules": false }],
     "@babel/react"
   ],
   "plugins": [
