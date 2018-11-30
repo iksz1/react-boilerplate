@@ -1,14 +1,14 @@
-## Minimalistic React Boilerplate
+# Minimalistic React Boilerplate
 
 Starter kit for those, who want to learn more about Webpack and Babel.
 
 ### What's included
 
-* Webpack 4
-* Babel 7
-* Eslint
-* Jest
-* Sass support
+- Webpack
+- Babel
+- Eslint
+- Jest
+- Sass support
 
 ### Installation
 
@@ -26,9 +26,10 @@ To remove git repository, run `rm -rf .git` (on Windows `rm -r -force .git`).
 
 ### Usage
 
-* `npm start` - starts development server
-* `npm run build` - creates production ready bundle
-* `npm test` - runs Jest
+`npm start` - start development server  
+`npm run build` - create production ready bundle  
+`npm run clean` - clean build output  
+`npm test` - run Jest
 
 To target specific platform, change settings in `.babelrc`. If polyfills are needed, you can import them in `config/polyfills.js`
 
