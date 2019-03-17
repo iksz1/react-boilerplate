@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { hot } from "react-hot-loader/root";
 import style from "./App.scss";
 
-export default class App extends Component {
+class App extends Component {
   static propTypes = {
-    msg: PropTypes.string.isRequired
+    msg: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
-    msg: "Build something cool!"
+    msg: "Build something cool!",
   };
 
   render() {
@@ -21,3 +22,5 @@ export default class App extends Component {
     );
   }
 }
+
+export default hot(App);
