@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const autoprefixer = require("autoprefixer");
 const cssnano = require("cssnano");
 
-//https://webpack.js.org/plugins/html-webpack-plugin/
+// https://webpack.js.org/plugins/html-webpack-plugin/
 const htmlPlugin = new HtmlWebPackPlugin({
   template: "public/index.html",
   // favicon: "public/favicon.ico",
@@ -19,14 +19,14 @@ const htmlPlugin = new HtmlWebPackPlugin({
     keepClosingSlash: true,
     minifyJS: true,
     minifyCSS: true,
-    minifyURLs: true
-  }
+    minifyURLs: true,
+  },
 });
 
-//replacement for ExtractTextWebpackPlugin
+// replacement for ExtractTextWebpackPlugin
 const extractPlugin = new MiniCssExtractPlugin({
   filename: "[name].[hash:8].css",
-  chunkFilename: "[id].css"
+  chunkFilename: "[id].css",
 });
 
 module.exports = (env, argv) => {
@@ -38,7 +38,7 @@ module.exports = (env, argv) => {
     output: {
       path: path.resolve(__dirname, "build"),
       filename: "[name].[hash:8].js",
-      publicPath: "/"
+      publicPath: "/",
     },
     devtool: isProduction ? false : "eval-source-map",
     resolve: { extensions: [".ts", ".tsx", ".js", ".json"] },
@@ -47,7 +47,7 @@ module.exports = (env, argv) => {
         {
           test: /\.(js|jsx)$/,
           exclude: /node_modules/,
-          use: ["babel-loader?cacheDirectory", "eslint-loader?emitWarning"] //order matters
+          use: ["babel-loader?cacheDirectory", "eslint-loader?emitWarning"], //order matters
         },
         {
           test: /\.(css|scss)$/,
@@ -56,38 +56,40 @@ module.exports = (env, argv) => {
             {
               loader: "css-loader",
               options: {
-                modules: true, //set to false if you don't want to use css modules
-                camelCase: true,
-                sourceMap: true,
-                localIdentName: "[name]_[local]_[hash:base64:5]"
-                // importLoaders: 2
-              }
+                // set to false if you don't want to use css modules
+                modules: {
+                  localIdentName: isProduction ? "[hash:base64]" : "[path][name]__[local]",
+                },
+                localsConvention: "camelCase",
+                // sourceMap: true,
+                importLoaders: 2,
+              },
             },
             {
               loader: "postcss-loader",
-              options: { ident: "postcss", plugins: [autoprefixer(), cssnano()] }
+              options: { ident: "postcss", plugins: [autoprefixer(), cssnano()] },
             },
-            //this can be removed if you don't use sass
-            "sass-loader"
-          ]
+            // this can be removed if you don't use sass
+            "sass-loader",
+          ],
         },
         {
           test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif)$/,
           loader: "url-loader",
-          options: { limit: 4096, name: "[name].[hash:8].[ext]" }
-        }
-      ]
+          options: { limit: 4096, name: "[name].[hash:8].[ext]" },
+        },
+      ],
     },
     devServer: {
-      // host: "0.0.0.0", //makes server accessible over local network
+      // host: "0.0.0.0", // makes server accessible over local network
       port: 3000,
       compress: true,
       overlay: true,
-      historyApiFallback: true, //redirect 404 to index.html
-      stats: "minimal"
+      historyApiFallback: true, // redirect 404 to index.html
+      stats: "minimal",
     },
     stats: { children: false, modules: false, moduleTrace: false },
     performance: { hints: false },
-    plugins
+    plugins,
   };
 };
